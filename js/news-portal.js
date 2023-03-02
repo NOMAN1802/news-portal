@@ -1,4 +1,5 @@
-lte fetch =[];
+let fetchData =[];
+
 const fetchCategories = () =>{
     fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(res => res.json())
@@ -32,7 +33,10 @@ const fetchCategoryNews = (category_id, category_name) => {
     
     fetch(url)
     .then(res => res.json())
-    .then (data => showAllNews(data.data,category_name));
+    
+    .then ( (data) =>{fetchData = (data.data);
+      showAllNews(data.data,category_name)
+    }) ;
 };
 
 const showAllNews  = (data, category_name) => {
@@ -40,8 +44,9 @@ const showAllNews  = (data, category_name) => {
   document.getElementById('news-count').innerText = data.length;
   document.getElementById('news-title').innerText = category_name;
   const newsContainer = document.getElementById('all-news');
+  newsContainer.innerHTML = "";
   data.forEach(singleNews => {
-     const {_id,image_url,title,details,author,total_view} = singleNews;
+     const {_id,image_url,title,details,author,total_view,rating} = singleNews;
    /*  newContainer.innerHTML += `
     <div class="card mb-3">
     <div class="row g-0">
@@ -88,8 +93,13 @@ const showAllNews  = (data, category_name) => {
         <p class ="m-0 p-0">${total_view ? total_view : "Not available"} </p>
         </div>
 
-        <div>
+        <div class ="d-flex gap-2">
         <i class=" fas fa-star"></i>
+        <i class=" fas fa-star"></i>
+        <i class=" fas fa-star"></i>
+        <i class=" fas fa-star"></i>
+        <i class=" fas fa-star-half"></i>
+        <p>${rating.number}</p>
 
         </div>
 
@@ -168,3 +178,30 @@ condition ? "execute for true" : "execute for false"
 */
 
 // show trending news 
+const showTrending =()=>{
+  const trendingNews = fetchData.filter(singleData => singleData.others_info.is_trending === true);
+  const category_name = document.getElementById("news-title").innerText;
+ 
+ showAllNews(trendingNews,category_name );
+};
+const showTodaysPick=()=>{
+  const todaysPickNews = fetchData.filter(singleData => singleData.others_info.is_todays_pick === true);
+  const category_name = document.getElementById("news-title").innerText;
+ 
+ showAllNews(todaysPickNews, category_name);
+};
+
+// optional
+// Generate stars
+// ${generateStars(rating.number)}
+// const generateStars= rating =>{
+//     let ratingHTML= '';
+//     for (let i = 1; i <= Math.floor(rating); i++){
+//         ratingHTML +=`<i class="fas fa-star"></i>`;
+      
+//     }
+//     if(rating - Math.floor(rating)>0){
+//         ratingHTML+=`<i class="fas fa-star-half"></i>`
+//     }
+//     return ratingHTML
+// }
