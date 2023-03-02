@@ -10,6 +10,7 @@
 
     <!-- font-awesome CDN goes here -->
    
+    <script src="https://kit.fontawesome.com/4e1e14b05a.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="styles/style.css" />
   </head>
@@ -61,7 +62,7 @@
    <!-- main section start -->
     <main>
      <!-- alert section  -->
-    <section class="container">
+    <section class="container mt-4">
       <div class="alert alert-light" role="alert">
         <span id="news-count">0</span> items found for category <span id="news-title"></span>
       </div>
@@ -69,7 +70,7 @@
 
     <!-- sorting option section  -->
     <section class="container d-flex justify-content-between" id="">
-     <div class="d-flex justify-content-center align-items-center gap-2">
+     <div class="d-flex justify-content-center align-items-center gap-2 my-4">
        <p class="p-0 m-0">Short by:</p>
        
         <div>
@@ -82,16 +83,41 @@
         </div>
      
      </div>
-     <div class="d-flex gap-2">
-           <button class="btn btn-primary">Todays Pick</button>
-           <button class="btn btn-outline-secondary">Trending</button>
+     <div class="d-flex justify-content-center align-items-center gap-2">
+           <button class="btn btn-primary" onclick="showTodaysPick()">Todays Pick</button>
+           <button class="btn btn-outline-secondary" onclick="showTrending()">Trending</button>
 
      </div>
     </section>
     <!-- sorting option section ends  -->
-    <section class="all-news" id="all-news">
-    div
+    <section class="all-news container mb-4" id="all-news">
+      
     </section>
+    <!-- modal body goes here  -->
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" >
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- modal ends  -->
     </main>
 
    <!-- main section ends -->
